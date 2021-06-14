@@ -66,6 +66,7 @@ def decklistReader():
 
         # Checks to see if the card is a land / has no mana cost and goes to next card if it is
         if (apiRequest["mana_cost"] == ''):
+            cardCount += int(splitLines[0])
             continue
 
         # Saves the mana cost and splits it so that it can be counted
