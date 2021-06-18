@@ -213,7 +213,7 @@ def decklistReader():
     # Calculations
     basicLands = (100 - cardCount) # 100 can be changed depending on the format
 
-    if (cardCount != 0):
+    if (cardCount != 0 and cardCount > 0):
         plains = str(landFormula(basicLands, wSymbol, symbolCount))
         islands = str(landFormula(basicLands, uSymbol, symbolCount))
         swamps = str(landFormula(basicLands, bSymbol, symbolCount))
@@ -221,7 +221,7 @@ def decklistReader():
         forests = str(landFormula(basicLands, gSymbol, symbolCount))
 
     else:
-        print("There are no cards with mana costs in the list, so the conversion will not run.")
+        print("There are either no cards with mana costs in the list or your decklist is full, so the conversion will not run.")
         return
 
     # Print out the information (this will eventually be in a gui)
