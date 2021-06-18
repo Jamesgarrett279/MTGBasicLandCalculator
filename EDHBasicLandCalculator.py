@@ -84,7 +84,7 @@ def decklistReader():
             for symbols in splitCost:
                 currentSymbol = symbols[1]
 
-                if (currentSymbol in numbers or currentSymbol == 'C' or currentSymbol == 'S'):
+                if (currentSymbol in numbers or currentSymbol == 'C' or currentSymbol == 'S' or currentSymbol == 'X'):
                     # This mana is generic, colorless, or snow, which we will assume the deck can pay for through other cards
                     continue
                 
@@ -207,6 +207,7 @@ def decklistReader():
                     # If the symbol is not one of the above cases, it's either not a symbol or it's from an un-set
                     else:
                         print("A non-valid symbol has been detected. Please make sure all cards in your list are black-bordered cards.")
+                        print("Card Name: " + cardName)
                         return
 
     # Calculations
