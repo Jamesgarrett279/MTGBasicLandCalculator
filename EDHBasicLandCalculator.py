@@ -47,6 +47,12 @@ def decklistReader():
         # Seperates the number of cards from the card name
         splitLines = lines.split(" ", 1)
 
+        # Removes slashes from double-sided cards
+        if ("//" in splitLines[1]):
+            cardSides = splitLines[1].split(" //")
+            splitLines[1] = (cardSides[0] + cardSides[1])
+
+
         # Replaces the spaces with a plus sign so that we can search the full card name through the api
         cardName = splitLines[1].replace(" ", "+")
         searchAddress = "https://api.scryfall.com/cards/named?exact=" + cardName
@@ -59,6 +65,8 @@ def decklistReader():
             
             if (api.status_code == 404):
                 print("Error: Card not found")
+                print("Search Query: " + searchAddress)
+                print("Line: " + lines)
                 return
 
             apiRequest = api.json()
@@ -68,6 +76,16 @@ def decklistReader():
             print(ex)
             return
 
+        #TESTER
+        try:
+            test = apiRequest["card_faces"]
+            print(apiRequest)
+        except:
+            print()
+            print("not here")
+            print()
+
+        print(cardName)
         # Checks to see if the card is a land / has no mana cost and goes to next card if it is
         if (apiRequest["mana_cost"] == ''):
             cardCount += int(splitLines[0])
